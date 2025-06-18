@@ -25,33 +25,31 @@ const TodoList = () => {
 
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
         {todos.map((todo) => {
-          const labelId = `checkbox-list-label-${value}`;
-          <ListItem
-            key={todo.id}
-            secondaryAction={
-              <IconButton edge="end" aria-label="comments">
-                <CommentIcon />
-              </IconButton>
-            }
-            disablePadding
-          >
-            <ListItemButton
-              role={undefined}
-              onClick={handleToggle(value)}
-              dense
+          const labelId = `checkbox-list-label-${todo.id}`;
+          return (
+            <ListItem
+              key={todo.id}
+              secondaryAction={
+                <IconButton edge="end" aria-label="comments">
+                  <CommentIcon />
+                </IconButton>
+              }
+              disablePadding
             >
-              <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={checked.includes(value)}
-                  tabIndex={-1}
-                  disableRipple
-                  inputProps={{ "aria-labelledby": labelId }}
-                />
-              </ListItemIcon>
-              <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-            </ListItemButton>
-          </ListItem>;
+              <ListItemButton role={undefined} dense>
+                <ListItemIcon>
+                  <Checkbox
+                    edge="start"
+                    checked={todo.completed}
+                    tabIndex={-1}
+                    disableRipple
+                    inputProps={{ "aria-labelledby": labelId }}
+                  />
+                </ListItemIcon>
+                <ListItemText id={labelId} primary={todo.text} />
+              </ListItemButton>
+            </ListItem>
+          );
         })}
       </List>
     </div>
