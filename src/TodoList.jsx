@@ -19,6 +19,17 @@ const TodoList = () => {
       return prevTodos.filter((todo) => todo.id !== id);
     });
   };
+  const toggleTodo = (id) => {
+    setTodos((prevTodos) => {
+      return prevTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: !todo.completed };
+        } else {
+          return todo;
+        }
+      });
+    });
+  };
   return (
     <div>
       <h1>TodoList</h1>
@@ -29,6 +40,7 @@ const TodoList = () => {
             key={todo.id}
             todo={todo}
             removeTodo={() => removeTodo(todo.id)}
+            toggle={() => toggleTodo(todo.id)}
           />
         ))}
       </List>
