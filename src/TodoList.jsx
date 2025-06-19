@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import List from "@mui/material/List";
+import TodoForm from "./TodoForm";
 
 import TodoItem from "./TodoItem";
 
@@ -43,6 +44,7 @@ const TodoList = () => {
             toggle={() => toggleTodo(todo.id)}
           />
         ))}
+        <TodoForm />
       </List>
     </div>
   );
