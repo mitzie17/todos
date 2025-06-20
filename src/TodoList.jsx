@@ -20,6 +20,7 @@ const TodoList = () => {
       return prevTodos.filter((todo) => todo.id !== id);
     });
   };
+
   const toggleTodo = (id) => {
     setTodos((prevTodos) => {
       return prevTodos.map((todo) => {
@@ -29,6 +30,12 @@ const TodoList = () => {
           return todo;
         }
       });
+    });
+  };
+
+  const addTodo = (text) => {
+    setTodos((prevTodos) => {
+      return [...prevTodos, { text: text, id: 8, completed: false }];
     });
   };
   return (
@@ -44,7 +51,7 @@ const TodoList = () => {
             toggle={() => toggleTodo(todo.id)}
           />
         ))}
-        <TodoForm />
+        <TodoForm addTodo={addTodo} />
       </List>
     </div>
   );
