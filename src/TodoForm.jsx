@@ -25,7 +25,7 @@ const TodoForm = ({ addTodo }) => {
       <form onSubmit={handleSubmit}>
         <TextField
           id="outlined-basic"
-          label="Outlined"
+          label="Add todo"
           variant="outlined"
           onChange={handleChange}
           value={text}
