@@ -1,8 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import List from "@mui/material/List";
 import TodoForm from "./TodoForm";
-
 import TodoItem from "./TodoItem";
 
 // temporary data to start working with
@@ -13,8 +12,19 @@ const initialTodos = [
   { id: 4, text: "walk the chickens", completed: false },
 ];
 
+const getInitialData = () => {
+  const data = JSON.parse(localStorage.getItem("todos"));
+  if (!data) return [];
+  return data;
+};
+
 const TodoList = () => {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState(getInitialData);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
   const removeTodo = (id) => {
     setTodos((prevTodos) => {
       return prevTodos.filter((todo) => todo.id !== id);
